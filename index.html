@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Video Maker - Emam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 AI Video Generator</h1>
+            <p class="tagline">From Bangladesh to the World - Create Videos with AI</p>
+            <p class="creator">Created by MD Emam Hossain</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <h2>Enter Your Video Idea</h2>
+                <textarea 
+                    id="promptInput" 
+                    placeholder="Example: A beautiful sunset over Cox's Bazar beach with gentle waves and seagulls flying..."
+                    rows="4"
+                ></textarea>
+                
+                <div class="controls">
+                    <div class="duration-selector">
+                        <label>Video Duration:</label>
+                        <select id="durationSelect">
+                            <option value="15">15 Seconds (Shorts/Reels)</option>
+                            <option value="30">30 Seconds</option>
+                            <option value="60" selected>1 Minute</option>
+                            <option value="120">2 Minutes</option>
+                            <option value="300">5 Minutes (Long Form)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="resolution-selector">
+                        <label>Resolution Quality:</label>
+                        <select id="resolutionSelect">
+                            <option value="480p">480p (Standard)</option>
+                            <option value="720p">720p HD</option>
+                            <option value="1080p" selected>1080p Full HD</option>
+                            <option value="4k">4K Ultra HD</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- NEW: Platform Selection Section -->
+                <div class="platform-section">
+                    <h3>Select Platform Format:</h3>
+                    <div class="platform-grid">
+                        <div class="platform-option">
+                            <input type="radio" id="youtubeShorts" name="platform" value="youtube-shorts" checked>
+                            <label for="youtubeShorts" class="platform-label">
+                                <span class="platform-icon">📱</span>
+                                <span class="platform-name">YouTube Shorts</span>
+                                <span class="platform-size">1080×1920 (9:16)</span>
+                            </label>
+                        </div>
+                        
+                        <div class="platform-option">
+                            <input type="radio" id="tiktok" name="platform" value="tiktok">
+                            <label for="tiktok" class="platform-label">
+                                <span class="platform-icon">🎵</span>
+                                <span class="platform-name">TikTok</span>
+                                <span class="platform-size">1080×1920 (9:16)</span>
+                            </label>
+                        </div>
+                        
+                        <div class="platform-option">
+                            <input type="radio" id="facebookReels" name="platform" value="facebook-reels">
+                            <label for="facebookReels" class="platform-label">
+                                <span class="platform-icon">📘</span>
+                                <span class="platform-name">Facebook Reels</span>
+                                <span class="platform-size">1080×1920 (9:16)</span>
+                            </label>
+                        </div>
+                        
+                        <div class="platform-option">
+                            <input type="radio" id="instagramReels" name="platform" value="instagram-reels">
+                            <label for="instagramReels" class="platform-label">
+                                <span class="platform-icon">📸</span>
+                                <span class="platform-name">Instagram Reels</span>
+                                <span class="platform-size">1080×1920 (9:16)</span>
+                            </label>
+                        </div>
+                        
+                        <div class="platform-option">
+                            <input type="radio" id="facebookVideo" name="platform" value="facebook-video">
+                            <label for="facebookVideo" class="platform-label">
+                                <span class="platform-icon">📺</span>
+                                <span class="platform-name">Facebook Video</span>
+                                <span class="platform-size">1280×720 (16:9)</span>
+                            </label>
+                        </div>
+                        
+                        <div class="platform-option">
+                            <input type="radio" id="youtubeVideo" name="platform" value="youtube-video">
+                            <label for="youtubeVideo" class="platform-label">
+                                <span class="platform-icon">▶️</span>
+                                <span class="platform-name">YouTube Video</span>
+                                <span class="platform-size">1920×1080 (16:9)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Platform Selection Section -->
+                
+                <button id="generateBtn" class="generate-btn">
+                    🎥 Generate AI Video
+                </button>
+            </div>
+
+            <div class="output-section">
+                <h2>Your Video Will Appear Here</h2>
+                <div id="videoContainer" class="video-placeholder">
+                    <div class="preview-info">
+                        <p>⏳ Video will be generated here...</p>
+                        <div class="preview-size">
+                            <span id="previewSize">1080×1920 (9:16)</span>
+                            <span id="previewPlatform">YouTube Shorts Format</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="video-info" id="videoInfo">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Platform:</span>
+                            <span id="selectedPlatform" class="info-value">YouTube Shorts</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Resolution:</span>
+                            <span id="selectedResolution" class="info-value">1080×1920</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Duration:</span>
+                            <span id="selectedDuration" class="info-value">60 seconds</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Status:</span>
+                            <span id="status" class="info-value status-ready">Ready to generate</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="downloadBtn" class="download-btn" disabled>
+                        📥 Download Video
+                    </button>
+                    <button id="youtubeBtn" class="youtube-btn" disabled>
+                        ▶️ Upload to YouTube
+                    </button>
+                    <button id="socialBtn" class="social-btn" disabled>
+                        📱 Share to Social Media
+                    </button>
+                </div>
+                
+                <div class="format-notes">
+                    <h3>📝 Platform Specifications:</h3>
+                    <ul>
+                        <li><strong>YouTube Shorts/TikTok/Reels:</strong> Vertical (9:16), 15-60 seconds</li>
+                        <li><strong>Facebook/YouTube Videos:</strong> Horizontal (16:9), up to 5 minutes</li>
+                        <li><strong>All formats:</strong> Include captions, music, and AI voiceover</li>
+                        <li><strong>Quality:</strong> Optimized for each platform's requirements</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>From Bangladesh with ❤️ | Powered by AI Technology</p>
+            <p>Made by MD Emam Hossain | Step by Step Development</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
